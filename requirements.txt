@@ -1,0 +1,9 @@
+cs50
+Flask
+Flask-Session
+werkzeug.security
+functools
+datetime
+os
+io
+random

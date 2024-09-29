@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+<div class="container fade-in">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    {% if username %}
+                        <h2 class="card-title mb-4">Welcome back, {{ username }}</h2>
+                        <div class="stats mb-4">
+                            <p class="mb-2">You have answered <strong>{{ questions_answered }}</strong> questions and got <strong>{{ questions_correct }}</strong> correct.</p>
+                            {% if questions_answered > 0 %}
+                                <div class="progress mb-2">
+                                    <div class="progress-bar" role="progressbar" style="width: {{ questions_correct / questions_answered * 100 }}%;" aria-valuenow="{{ questions_correct / questions_answered * 100 }}" aria-valuemin="0" aria-valuemax="100">{{ (questions_correct / questions_answered * 100)|round(2) }}%</div>
+                                </div>
+                            {% endif %}
+                            <p class="mb-0">Your current streak: <strong>{{ streak }} days</strong></p>
+                        </div>
+                    {% else %}
+                        <h2 class="card-title mb-4">Welcome, Guest</h2>
+                        <p>Sign in to track your progress and maintain your streak!</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    {% if is_taken_test_today %}
+                        <h3 class="card-title mb-3">Ready for another challenge?</h3>
+                        <p class="card-text">You've already taken a test today, but there's always more to learn!</p>
+                    {% else %}
+                        <h3 class="card-title mb-3">Time for today's test!</h3>
+                        <p class="card-text">You haven't taken a test today. Keep your streak going!</p>
+                    {% endif %}
+
+                    <form action="/test" method="get" class="mt-4">
+                        <div class="mb-3">
+                            <select name="category" class="form-select" required>
+                                <option value="" disabled selected>Select a category</option>
+                                {% for category in categories %}
+                                    <option value="{{ category }}">{{ category }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Start Test</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

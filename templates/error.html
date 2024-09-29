@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Error
+{% endblock %}
+
+{% block main %}
+<div class="container fade-in">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h1 class="card-title mb-4">{{ top }}</h1>
+                    <img class="img-fluid mb-4 error-image" alt="{{ top }}" src="static/error.png" title="{{ top }}">
+                    <h2 class="card-subtitle mb-4">{{ bottom }}</h2>
+                    <a href="/" class="btn btn-primary">Go Back Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

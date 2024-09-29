@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Test
+{% endblock %}
+
+{% block main %}
+<div class="container fade-in">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">Let's check your Python knowledge</h2>
+                    <form action="/test" method="post" id="quiz_form">
+                        {% for item in quiz %}
+                            <div class="question-card mb-4">
+                                <h5 class="question-text mb-3">Question {{ loop.index }}: {{ item.question.question_text }}</h5>
+                                <div class="answers">
+                                    {% for answer in item.answers %}
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="radio" name="{{ item.question.id }}" id="answer{{ item.question.id }}_{{ answer.id }}" value="{{ answer.id }}">
+                                            <label class="form-check-label" for="answer{{ item.question.id }}_{{ answer.id }}">
+                                                {{ answer.answer_text }}
+                                            </label>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary">Submit Answers</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('quiz_form').addEventListener('submit', function(event) {
+    let allAnswered = true;
+    const questionNames = [...new Set(Array.from(document.querySelectorAll('input[type="radio"]'))
+        .map(input => input.name))];
+
+    questionNames.forEach(function(questionName) {
+        const answerSelected = document.querySelector(`input[name="${questionName}"]:checked`);
+        if (!answerSelected) {
+            allAnswered = false;
+            document.querySelector(`[name="${questionName}"]`).closest('.question-card').classList.add('unanswered');
+        } else {
+            document.querySelector(`[name="${questionName}"]`).closest('.question-card').classList.remove('unanswered');
+        }
+    });
+
+    if (!allAnswered) {
+        event.preventDefault();
+        alert('Please answer all questions before submitting.');
+    } else {
+        window.removeEventListener('beforeunload', unloadWarning);
+    }
+});
+
+function unloadWarning(event) {
+    event.preventDefault();
+    event.returnValue = '';
+}
+
+window.addEventListener('beforeunload', unloadWarning);
+</script>
+{% endblock %}

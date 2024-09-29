@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Upload Complete
+{% endblock %}
+
+{% block main %}
+<div class="container fade-in">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h2 class="card-title mb-4">Upload Successful!</h2>
+                    <div class="upload-progress mb-4">
+                        <div class="progress" style="height: 30px;">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ uploaded }}%;" aria-valuenow="{{ uploaded }}" aria-valuemin="0" aria-valuemax="100">{{ uploaded }}%</div>
+                        </div>
+                    </div>
+                    <p class="lead mb-4">You have successfully uploaded {{ uploaded }}% of the questions.</p>
+                    <div class="d-grid gap-2 d-md-block">
+                        <a href="/upload" class="btn btn-primary me-md-2">Upload More</a>
+                        <a href="/" class="btn btn-outline-secondary">Return Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Upload Questions
+{% endblock %}
+
+{% block main %}
+<div class="container fade-in">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">Upload Questions</h2>
+                    <form method="POST" action="/upload" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="file-upload" class="form-label">Upload CSV File:</label>
+                            <input type="file" class="form-control" id="file-upload" name="file" accept=".csv" required>
+                        </div>
+                        <div class="mb-3">
+                            <small class="text-muted">Please upload a CSV file containing your questions and answers.</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload CSV</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
