@@ -1,6 +1,6 @@
 # **PYTHON QUIZ GENERATOR MADE IN PYTHON**
 
-## Video Demo:  <[Python Quiz Generator Demo](https://youtu.be/157YHV2JD9I)>
+## Web Demo: under implement
 
 ## Purpose:
 As a total beginner, the amount of knowledge I received by taking this course in my spare time while maintaining my full time job is enormous. I feel like I forget something if I don't practice coding even for just one day. Therefore, I want to write a small webapp that's like Duolingo, but for an amateur programmer like me to review what I have learned.
