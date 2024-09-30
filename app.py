@@ -274,3 +274,7 @@ def change_password():
         return redirect("/")
     else:
         return render_template("/change.html")
+
+
+if __name__ == "__main__":
+    app.run()
